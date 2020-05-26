@@ -1,11 +1,11 @@
 <template>
-  <div style="background-color:#D3DBE1;min-height:100vh">
-    <NavBar user="testuser@cjm.com" />
+  <div style="background-color:#D3DBE1;min-height:100vh;font-family:cursive">
+    <NavBar />
     <div class="title-design">
-      <h1>All hotels</h1>
+      <h1 style="font-family:cursive">All hotels</h1>
     </div>
     <Loader v-if="loading" />
-    <div v-else-if="hotels.length">
+    <div v-else-if="hotels.length" >
       <div class="filer">
         <b-card no-body style="min-width: 15rem;max-width:15rem">
             <template v-slot:header>
@@ -21,35 +21,32 @@
                 </b-list-group>       
             </b-card-body>
             <b-card-body>
-                <b-card-text style="font-weight:bold;font-size:20px;color:black">Star rating</b-card-text>
+                <b-card-text style="font-weight:bold;font-size:20px;color:black">Nutrition</b-card-text>
                 <b-list-group>                    
-                    <b-form-checkbox style="cursor:pointer;">2 stars</b-form-checkbox>
-                    <b-form-checkbox>3 stars</b-form-checkbox>
-                    <b-form-checkbox>4 stars</b-form-checkbox>
-                    <b-form-checkbox>5 stars</b-form-checkbox> 
+                    <b-form-checkbox style="cursor:pointer;">RO(Room only)</b-form-checkbox>
+                    <b-form-checkbox>BB(Bed & breakfast)</b-form-checkbox>
+                    <b-form-checkbox>HB(Half board)</b-form-checkbox>
+                    <b-form-checkbox>FB(Full board)</b-form-checkbox> 
+                    <b-form-checkbox>AI(All inclusive)</b-form-checkbox> 
                 </b-list-group>       
             </b-card-body>
               <b-card-body>
-                <b-card-text style="font-weight:bold;font-size:20px;color:black">Star rating</b-card-text>
+                <b-card-text style="font-weight:bold;font-size:20px;color:black">Has room cleaning</b-card-text>
                 <b-list-group>                    
-                    <b-form-checkbox style="cursor:pointer;">2 stars</b-form-checkbox>
-                    <b-form-checkbox>3 stars</b-form-checkbox>
-                    <b-form-checkbox>4 stars</b-form-checkbox>
-                    <b-form-checkbox>5 stars</b-form-checkbox> 
+                    <b-form-checkbox style="cursor:pointer;">Yes</b-form-checkbox>
+                    <b-form-checkbox>No</b-form-checkbox> 
                 </b-list-group>       
             </b-card-body>
               <b-card-body>
-                <b-card-text style="font-weight:bold;font-size:20px;color:black">Star rating</b-card-text>
+                <b-card-text style="font-weight:bold;font-size:20px;color:black">Has parking</b-card-text>
                 <b-list-group>                    
-                    <b-form-checkbox style="cursor:pointer;">2 stars</b-form-checkbox>
-                    <b-form-checkbox>3 stars</b-form-checkbox>
-                    <b-form-checkbox>4 stars</b-form-checkbox>
-                    <b-form-checkbox>5 stars</b-form-checkbox> 
+                    <b-form-checkbox style="cursor:pointer;">Yes</b-form-checkbox>
+                    <b-form-checkbox>No</b-form-checkbox>
                 </b-list-group>       
             </b-card-body>
         </b-card>
       </div>
-      <div v-for="hotel in hotels" v-bind:key="hotel.id" class="div hotelCard">
+      <div v-for="hotel in hotels" v-bind:key="hotel.id" class="div hotelCard" style="font-family:cursive">
         <b-card no-body style="min-width: 30rem;max-width:30rem">
           <!-- Image carousel -->
           <div>
@@ -61,9 +58,9 @@
               img-height="150"
               style="text-shadow: 1px 1px 2px #333;"
             >
-              <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=52"></b-carousel-slide>
-              <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54"></b-carousel-slide>
-              <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+              <b-carousel-slide img-height="225px" img-src="../../../public/images/hotel.jpg" class="img-fluid"></b-carousel-slide>
+              <b-carousel-slide img-height="225px" img-src="../../../public/images/hotel2.jpg" class="img-fluid"></b-carousel-slide>
+              <b-carousel-slide img-height="225px" img-src="../../../public/images/reception.png" class="img-fluid"></b-carousel-slide>
             </b-carousel>
           </div>
 
@@ -220,5 +217,9 @@ ul {
   display: flex;
   position: absolute;
   left: 20%;
+}
+.img-fluid {
+    max-width: 100%;
+    height: 255px;
 }
 </style>

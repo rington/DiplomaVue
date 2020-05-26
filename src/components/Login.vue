@@ -12,6 +12,10 @@
             <mdb-input label="Your email" icon="envelope" type="email" v-model="email" />
             <br />
             <mdb-input label="Your password" icon="lock" type="password" v-model="password" />
+            <div style="color:#757575;margin-bottom:15px">
+              <input type="checkbox"> Remember me
+            </div>
+            
           </div>
           <div class="text-center">
             <mdb-btn
@@ -49,6 +53,7 @@ export default Vue.extend({
   methods: {
     authorise() {
       let email = this.email;
+      localStorage.setItem("userEmail", email)
       let password = this.password;
       let url = this.url;
       axios

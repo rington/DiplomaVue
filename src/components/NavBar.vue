@@ -4,25 +4,12 @@
       <b-navbar-brand href="/">Home</b-navbar-brand>
       <b-navbar-brand href="/hotels">Hotels</b-navbar-brand>
       <b-navbar-brand href="/info">Info</b-navbar-brand>
-
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>       
-
-        <!-- Right aligned nav items -->
-        <!-- <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown right style="margin-right:25px">
-            <template v-slot:button-content>
-              <em v-if="user!= ''" style="font-weight:bold;font-size:20px">{{user}}</em>
-              <em v-else style="font-weight:bold;font-size:20px"> User</em>
-            </template>
-            <b-dropdown-item href="/profile">Profile</b-dropdown-item>            
-          </b-nav-item-dropdown>
-          <b-button style="background-color:#0396F7 !important" class="mb-2" @click="logOut">
-                <b-icon icon="power" aria-hidden="true"></b-icon> Logout
-            </b-button>
-        </b-navbar-nav> -->       
-      </b-collapse>
+      <div class="name">
+        <img src="../../public/images/logo.png" alt="" style="width:50px;height:50px">
+        Zaiets Booking
+      </div>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>      
+      <b-collapse id="nav-collapse" is-nav></b-collapse>
        <div>
            <div class="user">
                {{user}}
@@ -37,15 +24,18 @@
                 </b-button>      
             </b-button-group>
         </div>
-    </b-navbar>
+    </b-navbar>    
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 export default Vue.extend({
-     props:{
-         user: String,
+     data(){
+       return{
+         user: localStorage.getItem("userEmail"),
+       }
+         
      },
      methods:{
          logOut(){
@@ -64,5 +54,13 @@ export default Vue.extend({
     font-size: 22px;
     display: inline-block;
     margin-right: 10px;
+}
+.name {
+  font-weight: bold;
+  font-size: 40px;
+  font-family: cursive;
+  position: relative;
+  left: 33%;
+  color:white
 }
 </style>
