@@ -17,9 +17,9 @@ export default {
   name: 'App',
   data(){
     return{
-      hotelsMessage:'Available hotels',
-      loginMessage:'Log In',
-      hotelsAddMessage:'Add hotels',
+      // hotelsMessage:'Available hotels',
+      // loginMessage:'Log In',
+      // hotelsAddMessage:'Add hotels',
       // productsDeleteMessage:'Delete products',
       // productsUpdateMessage:'Update products',
     }

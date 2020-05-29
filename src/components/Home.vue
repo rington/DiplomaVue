@@ -23,7 +23,7 @@
         <i class="mdi mdi-eye" @click="collapsed = !collapsed"></i>
       </div>
     </div>
-    <p class="calendar-title">Choose date for you trip</p>
+    <p class="calendar-title">Choose date for your trip</p>
     <div style="display:flex;justify-content:center;">
       <div style="margin-top:30px">
         <b-row>
@@ -116,15 +116,15 @@
         <b-card-text>Beautiful city with lots of ancient architecture and places for entertainment. You have passibility to...</b-card-text>
       </b-card>
     </div>
-    <footer class="footer">
-      &copy;Copyright 2020 - All rights reserved. Zaiets Booking
-    </footer>    
+    <Footer />    
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import NavBar from "./NavBar";
+import Footer from "./Footer"
+
 export default Vue.extend({
   data() {
     return {
@@ -136,7 +136,8 @@ export default Vue.extend({
     };
   },
   components: {
-    NavBar
+    NavBar,
+    Footer
   },
   methods: {
     onContextFrom(ctx) {
@@ -221,16 +222,6 @@ export default Vue.extend({
   position: relative;
   left: 60%;
   top: -51px;
-}
-
-.footer {
-    position: absolute;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
-    background-color: #3d99f5;
-    color: white;
-    text-align:center;
 }
 
 </style>

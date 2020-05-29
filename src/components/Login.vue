@@ -12,9 +12,15 @@
             <mdb-input label="Your email" icon="envelope" type="email" v-model="email" />
             <br />
             <mdb-input label="Your password" icon="lock" type="password" v-model="password" />
-            <div style="color:#757575;margin-bottom:15px">
+            <div style="display:flex; justify-content:space-between;">
+              <div style="color:#757575;margin-bottom:15px">
               <input type="checkbox"> Remember me
             </div>
+            <div style="cursor:pointer;color:#2bbbad;font-weight:bold;" @click="goToRegister">
+              Create account
+            </div>
+            </div>
+            
             
           </div>
           <div class="text-center">
@@ -74,6 +80,9 @@ export default Vue.extend({
     },
     goToHome() {
       this.$router.push("/");
+    },
+    goToRegister(){
+      this.$router.push("/registration");
     }
   }
 });

@@ -14,7 +14,9 @@ import Home from "./components/Home.vue"
 import HotelsAdd from "./components/Hotels/HotelsAdd.vue"
 import HotelDelete from "./components/Hotels/HotelDelete.vue"
 import HotelsUpdate from './components/Hotels/HotelUpdate.vue';
+import Rooms from "./components/Rooms/Rooms.vue"
 import axios from "axios";
+
 axios.defaults.withCredentials = true
 
 Vue.use(VueRouter)
@@ -26,6 +28,7 @@ const routes = [
     { path: '/hotels/add', component: HotelsAdd },
     { path: '/hotels/delete', component: HotelDelete },
     { path: '/hotels/update', component: HotelsUpdate },
+    { path: '/hotel/*/rooms', component: Rooms }
 ]
 
 const router = new VueRouter({
