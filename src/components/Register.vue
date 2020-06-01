@@ -1,7 +1,7 @@
 <template>
   <div class="bg-image">
-    <div class="login-basic">
-      <div class="card-body-header" style="font-family: CURSIVE">Zaiets Booking</div>
+    <div class="login-basic2">
+      <div class="card-body-header2" style="font-family: CURSIVE">Zaiets Booking</div>
       <div style="padding: 10px;">
         <form>
           <p
@@ -40,11 +40,11 @@
           </div>
           <div class="text-center">
             <mdb-btn
-              style="width:150px;padding:10px;font-family: CURSIVE;color: white;"
+              style="width:150px;padding:10px;font-family: CURSIVE;color: white;background-color: #2bbbad !important;"
               @click="register()"
             >Create</mdb-btn>
             <mdb-btn
-              style="width:150px;padding:10px;font-family: CURSIVE;color: white;"
+              style="width:150px;padding:10px;font-family: CURSIVE;color: white;background-color: #2bbbad !important;"
               @click="varifyUser()"
             >Sign In</mdb-btn>
           </div>
@@ -128,7 +128,7 @@ export default Vue.extend({
 </script>
 
 <style>
-.login-basic {
+.login-basic2 {
   left: 42%;
   width: 350px;
   position: relative;
@@ -137,7 +137,7 @@ export default Vue.extend({
   border-radius: 8px;
   background-color: #e4f2ef;
 }
-.card-body-header {
+.card-body-header2 {
   height: 90px;
   background-color: #2bbbad;
   color: #ffffff;

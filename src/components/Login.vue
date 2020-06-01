@@ -1,7 +1,7 @@
 <template>
   <div class="bg-image">
-    <div class="login-basic">
-      <div class="card-body-header" style="font-family: CURSIVE">Zaiets Booking</div>
+    <div class="login-basic1">
+      <div class="card-body-header1" style="font-family: CURSIVE">Zaiets Booking</div>
       <div style="padding: 10px;">
         <form>
           <p
@@ -20,12 +20,10 @@
               Create account
             </div>
             </div>
-            
-            
           </div>
           <div class="text-center">
             <mdb-btn
-              style="width:150px;padding:10px;font-family: CURSIVE;color: white;"
+              style="width:150px;padding:10px;font-family: CURSIVE;color: white;background-color: #2bbbad !important;"
               @click="authorise();goToHome()"
             >Login</mdb-btn>
           </div>
@@ -79,9 +77,13 @@ export default Vue.extend({
         });
     },
     goToHome() {
+      if(this.email == null || this.password == 0){
+        alert("Wrong data!");
+        return;
+      }
       this.$router.push("/");
     },
-    goToRegister(){
+    goToRegister(){      
       this.$router.push("/registration");
     }
   }
@@ -89,7 +91,7 @@ export default Vue.extend({
 </script>
 
 <style>
-.login-basic {
+.login-basic1 {
   left: 42%;
   width: 350px;
   position: relative;
@@ -98,7 +100,7 @@ export default Vue.extend({
   border-radius: 8px;
   background-color: #e4f2ef;
 }
-.card-body-header {
+.card-body-header1 {
   height: 90px;
   background-color: #2bbbad;
   color: #ffffff;

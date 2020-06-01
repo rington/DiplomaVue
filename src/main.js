@@ -15,20 +15,31 @@ import HotelsAdd from "./components/Hotels/HotelsAdd.vue"
 import HotelDelete from "./components/Hotels/HotelDelete.vue"
 import HotelsUpdate from './components/Hotels/HotelUpdate.vue';
 import Rooms from "./components/Rooms/Rooms.vue"
+import Reservation from "./components/Reservation.vue"
+import RoomAdd from "./components/Rooms/RoomAdd.vue"
+import RoomUpdate from "./components/Rooms/RoomUpdate.vue"
+import RoomDelete from "./components/Rooms/RoomDelete.vue"
+import Account from "./components/Account.vue"
 import axios from "axios";
 
 axios.defaults.withCredentials = true
+Vue.config.productionTip = false;
 
 Vue.use(VueRouter)
 const routes = [
     { path: '/', component: Home },
+    { path: '/profile', component: Account },
     { path: '/login', component: Login },
     { path: '/registration', component: Register },
     { path: '/hotels', component: Hotels },
     { path: '/hotels/add', component: HotelsAdd },
     { path: '/hotels/delete', component: HotelDelete },
     { path: '/hotels/update', component: HotelsUpdate },
-    { path: '/hotel/*/rooms', component: Rooms }
+    { path: '/hotels/*/rooms', component: Rooms },
+    { path: '/hotels/*/rooms/add', component: RoomAdd },
+    { path: '/hotels/*/rooms/update', component: RoomUpdate },
+    { path: '/hotels/*/rooms/delete', component: RoomDelete },
+    { path: '/hotels/*/rooms/reservation', component: Reservation }
 ]
 
 const router = new VueRouter({

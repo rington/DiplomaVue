@@ -1,86 +1,138 @@
 <template>
-  <div>
-    <NavBar user="testuser@cjm.com" />
-    <div class="updateContent" align="center">
-      <div>
-        <h1>Update products</h1>
-        <p>Choose product id</p>
-        <input type="number" v-model="id" placeholder="Enter product id" min="0" />
-        <p>Title</p>
-        <input type="text" v-model="title" placeholder="Enter new title" />
-        <p>Price</p>
-        <input type="number" v-model="price" placeholder="Enter new price" min="0" />
-        <p>Quantity</p>
-        <input type="number" v-model="quantity" placeholder="Enter new quantity" min="0" />
-      </div>
+  <div style="background-color:#99d6ff;min-height:100vh;font-family:cursive">
+    <NavBar />
+    <div class="to-center">
+      <h1 style="margin-top:45px;margin-bottom:25px">Update hotel</h1>
+      <p>Name</p>
+      <input type="text" v-model="name" />
+      <p>City</p>
+      <input type="text" v-model="city" />
+      <p>Adress</p>
+      <input type="text" v-model="adress" />
+      <p>Description</p>
+      <input type="text" v-model="description" />
+      <p>NutritionTypeId</p>
+      <input type="number" v-model="nutritionTypeId" />
+      <p>Rating</p>
+      <input type="number" v-model="rating" />
       <br />
-      <button class="button updateButton" @click="updateProduct">Update product</button>
-      <p>
-        <button class="button" @click="goHome">View all products</button>
-      </p>
+      <p>Distance to the center</p>
+      <input type="number" v-model="distance" />
+      <br />
+      <div style="margin-top:25px;justify-content:center; display: flex;">
+        <vue-dropdown :config="config1" @setSelectedOption="setRoomCleaning($event)"></vue-dropdown>
+        <br />
+        <vue-dropdown :config="config2" @setSelectedOption="setHasParking($event)"></vue-dropdown>
+      </div>
+
+      <div style="margin-top:25px;">
+        <b-button squared variant="primary" @click="updateHotel()">Update</b-button>
+        <b-button squared variant="primary" @click="goToHotels()">Go to hotels</b-button>
+      </div>
     </div>
+    <Footer style="bottom:0px" />
   </div>
 </template>
 
 <script>
 import Vue from "vue";
-import axios from "axios";
+// import axios from "axios";
 import NavBar from "../NavBar";
+import Footer from "../Footer";
+import VueDropdown from "vue-dynamic-dropdown";
 
 export default Vue.extend({
   components: {
-    NavBar
+    NavBar,
+    Footer,
+    VueDropdown
   },
   data() {
     return {
-      id: undefined,
-      title: "",
-      price: undefined,
-      quantity: undefined
+      name: null,
+      city: null,
+      adress: null,
+      description: null,
+      nutritionTypeId: 0,
+      rating: 0,
+      distance: 0,
+      config1: {
+        options: [
+          {
+            value: "true"
+          },
+          {
+            value: "false"
+          }
+        ],
+        placeholder: "Room cleaning",
+        backgroundColor: "#97CEF7",
+        textColor: "black",
+        borderRadius: "1.1em",
+        border: "1px solid #3D99F5",
+        width: 200
+      },
+      config2: {
+        options: [
+          {
+            value: "true"
+          },
+          {
+            value: "false"
+          }
+        ],
+        placeholder: "Has parking",
+        backgroundColor: "#97CEF7",
+        textColor: "black",
+        borderRadius: "1.1em",
+        border: "1px solid #3D99F5",
+        width: 200
+      }
     };
   },
   methods: {
-    updateProduct() {
-      let id = this.id;
-      let title = this.title;
-      let price = this.price;
-      let quantity = this.quantity;
-      if (id != 0) {
-        axios
-          .put("https://localhost:44357/api/products/" + id, {
-            id,
-            title,
-            price,
-            quantity
-          })
-          .then(function(response) {
-            console.log(response);
-            alert("Success!");
-          })
-          .catch(function(error) {
-            console.log(error);
-            alert("Error!");
-          });
-      } else alert("Error!");
+    // updateProduct() {
+    //   let name = this.name;
+    //   let city = this.city;
+    //   let adress = this.adress;
+    //   let description = this.description;
+    //   let nutritionTypeId = this.nutritionTypeId;
+    //   let rating = this.rating;
+    //   let distance = this.distance;
+    //   let roomCleaning = this.config1.placeholder;
+    //   let hasParking = this.config2.placeholder;
+    //   if (id != 0) {
+    //     axios
+    //       .put("https://localhost:44357/api/products/" + id, {
+    //         id,
+    //         title,
+    //         price,
+    //         quantity
+    //       })
+    //       .then(function(response) {
+    //         console.log(response);
+    //         alert("Success!");
+    //       })
+    //       .catch(function(error) {
+    //         console.log(error);
+    //         alert("Error!");
+    //       });
+    //   } else alert("Error!");
+    // },
+    goToHotels() {
+      this.$router.push("/hotels");
     },
-    goHome() {
-      this.$router.push("/");
+    setRoomCleaning(selectedOption) {
+      this.config1.placeholder = selectedOption.value;
+    },
+    setHasParking(selectedOption) {
+      this.config2.placeholder = selectedOption.value;
     }
   }
 });
 </script>
 
-<style scopeded>
-.button {
-  border-radius: 10px;
-}
-.updateContent {
-  background-color: #03fc94;
-}
-.updateButton {
-  background-color: red;
-  padding: 15px 15px 15px 15px;
-  border: 2px solid purple;
-  border-radius: 10px;
-}
+<style>
+
+
 </style>

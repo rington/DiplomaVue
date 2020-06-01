@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#D3DBE1;min-height:100vh">
+  <div style="background-color:#99d6ff;min-height:100vh">
     <NavBar />
     <div v-if="collapsed" class="banner">
       <div>

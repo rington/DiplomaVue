@@ -3,7 +3,6 @@
     <b-navbar toggleable="lg" type="dark" style="background-color:#3D99F5">
       <b-navbar-brand href="/">Home</b-navbar-brand>
       <b-navbar-brand href="/hotels">Hotels</b-navbar-brand>
-      <b-navbar-brand href="/info">Info</b-navbar-brand>
       <div class="name">
         <img src="../../public/images/logo.png" alt="" style="width:50px;height:50px">
         Zaiets Booking

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="background-color:#D3DBE1;min-height:100vh;font-family:cursive">
+    <div style="background-color:#99d6ff;min-height:100vh;font-family:cursive">
       <NavBar />
       <div class="title-design">
         <h1 style="font-family:cursive">All hotels</h1>
@@ -104,7 +104,7 @@
               <h4 style="text-align: center;font-weight:bold" class="mb-0">{{hotel.name}}</h4>
             </template>
             <b-list-group-item class="rating-style more-info" :style="ratingColor(hotel.rating)">
-              Rating: {{hotel.rating}}
+              Stars: {{hotel.rating}}
               <div>
                 <b style="font-size:16px;color:black">More</b>
                 <i
@@ -136,7 +136,11 @@
             </div>
 
             <b-card-footer style="text-align:center;font-weight: bold; font-size: 25px;">
-              <a :href="goToRooms(hotel.id)" class="card-link">Go to rooms</a>
+              <a
+                :href="goToRooms(hotel.id)"
+                @click="setHotelId(hotel.id)"
+                class="card-link"
+              >Go to rooms</a>
             </b-card-footer>
           </b-card>
         </div>
@@ -172,7 +176,7 @@ export default Vue.extend({
   components: {
     Loader,
     NavBar
-    // Footer
+    //Footer
   },
   data() {
     return {
@@ -194,11 +198,8 @@ export default Vue.extend({
       bb: null,
       hb: null,
       fb: null,
-      ai: null,
+      ai: null
     };
-  },
-  watch: {
-    hotels() {}
   },
   mounted() {
     axios
@@ -206,7 +207,7 @@ export default Vue.extend({
       .then(response => {
         setTimeout(() => {
           this.hotels = response.data;
-          this.hotels.sort(function (a, b){
+          this.hotels.sort(function(a, b) {
             return b.id - a.id;
           });
           this.loading = false;
@@ -228,17 +229,17 @@ export default Vue.extend({
     getNutritionByHotelId(nutritionTypeId) {
       return this.nutritions[nutritionTypeId - 1].name;
     },
-    goToAdd() {
-      this.$router.push("/hotels/add");
-    },
-    gotToDelete() {
-      this.$router.push("/delete");
-    },
-    goToUpdate() {
-      this.$router.push("/update");
-    },
+    // goToAdd() {
+    //   this.$router.push("/hotels/add");
+    // },
+    // gotToDelete() {
+    //   this.$router.push("/delete");
+    // },
+    // goToUpdate() {
+    //   this.$router.push("/update");
+    // },
     goToRooms(hotelId) {
-      return `hotel/${hotelId}/rooms`;
+      return `hotels/${hotelId}/rooms`;
     },
     ratingColor(rating) {
       if (rating < 3) {
@@ -249,36 +250,46 @@ export default Vue.extend({
 
       return "color:#00A51B;";
     },
+    setHotelId(hotelId) {
+      localStorage.setItem("hotelId", hotelId);
+    },
     filter() {
       let hasParking = this.hasParking;
       let hasRoomCleaning = this.hasRoomCleaning;
       let hotelsTmp = this.hotels;
-      if(this.stars3 !=0 || this.stars4 != 0 || this.stars5 != 0){
+      if (this.stars3 != 0 || this.stars4 != 0 || this.stars5 != 0) {
         axios
-        .get(
-          "https://localhost:5001/api/hotels/ratingArray/" +
-            this.stars3 +
-            "/" +
-            this.stars4 +
-            "/" +
-            this.stars5
-        )
-        .then(response => {
-          setTimeout(() => {
-            this.hotels = response.data;
-            this.loading = false;
-          }, 600);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      }      
+          .get(
+            "https://localhost:5001/api/hotels/ratingArray/" +
+              this.stars3 +
+              "/" +
+              this.stars4 +
+              "/" +
+              this.stars5
+          )
+          .then(response => {
+            setTimeout(() => {
+              this.hotels = response.data;
+              this.loading = false;
+            }, 600);
+            hotelsTmp = response.data;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
       this.hotels = this.hotels.filter(function(x) {
         if (hotelsTmp.indexOf(x) != -1) return true;
         return false;
       });
       hotelsTmp = this.hotels;
-      if (this.ro != null || this.bb != null || this.hb != null || this.fb != null || this.ai != null) {
+      if (
+        this.ro != null ||
+        this.bb != null ||
+        this.hb != null ||
+        this.fb != null ||
+        this.ai != null
+      ) {
         axios
           .get(
             "https://localhost:5001/api/hotels/nutritionArray/" +
@@ -287,9 +298,9 @@ export default Vue.extend({
               this.bb +
               "/" +
               this.hb +
-              "/" + 
-              this.fb + 
-              "/" + 
+              "/" +
+              this.fb +
+              "/" +
               this.ai
           )
           .then(response => {
@@ -345,7 +356,11 @@ export default Vue.extend({
         return false;
       });
       hotelsTmp = this.hotels;
-      if (this.distance1 != null || this.distance2 != null || this.distance3 != null) {
+      if (
+        this.distance1 != null ||
+        this.distance2 != null ||
+        this.distance3 != null
+      ) {
         axios
           .get(
             "https://localhost:5001/api/hotels/distance/" +
@@ -405,9 +420,9 @@ export default Vue.extend({
         .then(response => {
           setTimeout(() => {
             this.hotels = response.data;
-            this.hotels.sort(function (a, b){
+            this.hotels.sort(function(a, b) {
               return b.id - a.id;
-          });
+            });
             this.loading = false;
           }, 600);
         })
