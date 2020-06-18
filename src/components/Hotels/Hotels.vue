@@ -126,7 +126,7 @@
               </b-list-group>
               <b-card-body>
                 <b-card-title>Nutrition: {{getNutritionByHotelId(hotel.nutritionTypeId)}}</b-card-title>
-                <b-card-text>teet a afdsf dsf</b-card-text>
+                <b-card-text>No description</b-card-text>
               </b-card-body>
               <b-list-group>
                 <b-list-group-item>Room cleaning: {{hotel.hasRoomCleaning}}</b-list-group-item>
@@ -229,15 +229,7 @@ export default Vue.extend({
     getNutritionByHotelId(nutritionTypeId) {
       return this.nutritions[nutritionTypeId - 1].name;
     },
-    // goToAdd() {
-    //   this.$router.push("/hotels/add");
-    // },
-    // gotToDelete() {
-    //   this.$router.push("/delete");
-    // },
-    // goToUpdate() {
-    //   this.$router.push("/update");
-    // },
+    
     goToRooms(hotelId) {
       return `hotels/${hotelId}/rooms`;
     },

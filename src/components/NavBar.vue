@@ -16,8 +16,7 @@
            
             <b-button-group>
                 <b-button variant="outline-primary" style="color: white !important; background-color: #007bff !important;"  @click="profile">
-                    <i class="mdi mdi-account" style="width:30px;"></i> Account
-                    <b-badge variant="info">2 <span class="sr-only">unread messages</span></b-badge>
+                    <i class="mdi mdi-account" style="width:30px;"></i> Account                    
                 </b-button>
                 <b-button variant="outline-primary" style="color: white !important; background-color: #007bff !important;" @click="logOut">
                     <i class="mdi mdi-logout" style="width:30px;"></i> Log Out
@@ -31,9 +30,9 @@
 <script>
 import Vue from "vue";
 export default Vue.extend({
-     data(){
+   data(){
        return{
-         user: localStorage.getItem("userName"),
+         user: localStorage.getItem("USERNAME"),
        }
          
      },

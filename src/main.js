@@ -20,7 +20,10 @@ import RoomAdd from "./components/Rooms/RoomAdd.vue"
 import RoomUpdate from "./components/Rooms/RoomUpdate.vue"
 import RoomDelete from "./components/Rooms/RoomDelete.vue"
 import Account from "./components/Account.vue"
+import RatingCriteria from "./components/RatingCriteria.vue"
+import Manager from "./components/Manager.vue"
 import axios from "axios";
+
 
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false;
@@ -28,6 +31,7 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter)
 const routes = [
     { path: '/', component: Home },
+    { path: '/ratingCriteria', component: RatingCriteria },
     { path: '/profile', component: Account },
     { path: '/login', component: Login },
     { path: '/registration', component: Register },
@@ -39,7 +43,8 @@ const routes = [
     { path: '/hotels/*/rooms/add', component: RoomAdd },
     { path: '/hotels/*/rooms/update', component: RoomUpdate },
     { path: '/hotels/*/rooms/delete', component: RoomDelete },
-    { path: '/hotels/*/rooms/reservation', component: Reservation }
+    { path: '/hotels/*/rooms/reservation', component: Reservation },
+    { path: '/hotels/*/rooms/reservation/manager', component: Manager },
 ]
 
 const router = new VueRouter({

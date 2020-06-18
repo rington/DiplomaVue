@@ -8,8 +8,8 @@
       </div>
       <br />
       <div style="margin-top:25px;">
-        <b-button squared variant="primary" @click="deleteHotel()">Delete</b-button>
-        <b-button squared variant="primary" @click="goToHotels()">Go to hotels</b-button>
+        <b-button squared variant="primary" @click="deleteHotel">Delete</b-button>
+        <b-button squared variant="primary" @click="goToHotels">Go to hotels</b-button>
       </div>      
     </div>
     <Footer style="bottom:0px;"/>
@@ -18,7 +18,7 @@
 
 <script>
 import Vue from "vue";
-// import axios from "axios";
+import axios from "axios";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 
@@ -33,20 +33,20 @@ export default Vue.extend({
     };
   },
   methods: {
-    // deleteProduct() {
-    //   let id = this.id;
-    //   if (id != 0) {
-    //     axios
-    //       .delete("https://localhost:44357/api/products/" + id, { id })
-    //       .then(function(response) {
-    //         console.log(response);
-    //         alert("Success!");
-    //       })
-    //       .catch(function(error) {
-    //         console.log(error);
-    //       });
-    //   } else alert("Error!");
-    // },
+     deleteHotel() {
+       let id = this.id;
+       if (id != 0) {
+         axios
+           .delete("https://localhost:5001/api/hotels/" + id, { id })
+           .then(function(response) {
+             console.log(response);
+             alert("Success!");
+           })
+           .catch(function(error) {
+             console.log(error);
+           });
+       } else alert("Error!");
+    },
     goToHotels() {
       this.$router.push("/hotels");
     }

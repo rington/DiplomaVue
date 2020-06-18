@@ -78,8 +78,7 @@ export default Vue.extend({
   methods: {
     register() {
       let email = this.email;
-      let name = this.name;
-      localStorage.setItem("userName", name);
+      let name = this.name;      
       let password = this.password;
       let passwordConfirm = this.passwordConfirm;
       axios

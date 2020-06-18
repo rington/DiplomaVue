@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#99d6ff;min-height:100vh">
+  <div style="background-color:#99d6ff;min-height:100vh;font-family:cursive">
     <div>
       <NavBar />
       <div>
@@ -119,7 +119,6 @@ export default Vue.extend({
   },
   methods: {
     goToReserve() {
-      console.log("qweqwe");
       this.$router.push("/hotels/*/rooms/reservation");
     }
   },

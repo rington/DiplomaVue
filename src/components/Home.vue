@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#99d6ff;min-height:100vh">
+  <div style="background-color:#99d6ff;min-height:100vh;font-family:cursive">
     <NavBar />
     <div v-if="collapsed" class="banner">
       <div>
@@ -189,7 +189,7 @@ export default Vue.extend({
 .calendar {
   border: 2px solid #3d99f5;
   background-color: white;
-  width: 25%;
+  width: 32%;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -220,7 +220,7 @@ export default Vue.extend({
 }
 .btn-hotels {
   position: relative;
-  left: 60%;
+  left: 67%;
   top: -51px;
 }
 

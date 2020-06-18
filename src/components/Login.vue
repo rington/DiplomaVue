@@ -1,7 +1,7 @@
 <template>
   <div class="bg-image">
-    <div class="login-basic1">
-      <div class="card-body-header1" style="font-family: CURSIVE">Zaiets Booking</div>
+    <div class="login-basic11">
+      <div class="card-body-header11" style="font-family: CURSIVE">Zaiets Booking</div>
       <div style="padding: 10px;">
         <form>
           <p
@@ -47,15 +47,21 @@ export default Vue.extend({
     mdbBtn
     // Loader
   },
+
   data() {
     return {
       email: null,
       password: null,
-      url:null
+      url: null,
+      userName:undefined
     };
   },
+  async updated(){
+    this.userName = await this.getUser();      
+    console.log("userName:", this.userName);
+  },
   methods: {
-    authorise() {
+    async authorise() {
       let email = this.email;
       localStorage.setItem("userEmail", email)
       let password = this.password;
@@ -67,14 +73,29 @@ export default Vue.extend({
           url
         })
         .then(function(response) {
-          setTimeout(() => {
-            console.log(response);
-          }, 100);
+          console.log(response);
         })
         .catch(function(error) {
           console.log(error);
           alert("Login Error!");
         });
+        
+       this.userName = await this.getUser();
+       localStorage.setItem("USERNAME", this.userName);      
+       console.log("userName:", localStorage.getItem("USERNAME"));
+    },
+    getUser(){
+      return axios
+         .get(
+           "https://localhost:5001/api/account/register/confirm/" + this.email
+         )
+        .then(response => {
+          return response.data.userName;          
+        })
+        .catch(error => {
+          console.log(error);
+        });
+        
     },
     goToHome() {
       if(this.email == null || this.password == 0){
@@ -91,7 +112,7 @@ export default Vue.extend({
 </script>
 
 <style>
-.login-basic1 {
+.login-basic11 {
   left: 42%;
   width: 350px;
   position: relative;
@@ -100,7 +121,7 @@ export default Vue.extend({
   border-radius: 8px;
   background-color: #e4f2ef;
 }
-.card-body-header1 {
+.card-body-header11 {
   height: 90px;
   background-color: #2bbbad;
   color: #ffffff;

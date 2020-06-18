@@ -7,8 +7,8 @@
       <input type="text" v-model="name" />
       <p>City</p>
       <input type="text" v-model="city" />
-      <p>Adress</p>
-      <input type="text" v-model="adress" />
+      <p>Address</p>
+      <input type="text" v-model="address" />
       <p>Description</p>
       <input type="text" v-model="description" />
       <p>NutritionTypeId</p>
@@ -17,7 +17,7 @@
       <input type="number" v-model="rating" />
       <br />
       <p>Distance to the center</p>
-      <input type="number" v-model="distance" />
+      <input type="number" v-model="distanceToCityCenter" />
       <br />
       <div style="margin-top:25px;justify-content:center; display: flex;">
         <vue-dropdown :config="config1" @setSelectedOption="setRoomCleaning($event)"></vue-dropdown>
@@ -36,7 +36,7 @@
 
 <script>
 import Vue from "vue";
-// import axios from "axios";
+import axios from "axios";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 import VueDropdown from "vue-dynamic-dropdown";
@@ -51,11 +51,13 @@ export default Vue.extend({
     return {
       name: null,
       city: null,
-      adress: null,
+      address: null,
       description: null,
       nutritionTypeId: 0,
       rating: 0,
-      distance: 0,
+      hasRoomCleaning: false,
+      hasParking: false,
+      distanceToCityCenter: 0,
       config1: {
         options: [
           {
@@ -91,34 +93,39 @@ export default Vue.extend({
     };
   },
   methods: {
-    // updateProduct() {
-    //   let name = this.name;
-    //   let city = this.city;
-    //   let adress = this.adress;
-    //   let description = this.description;
-    //   let nutritionTypeId = this.nutritionTypeId;
-    //   let rating = this.rating;
-    //   let distance = this.distance;
-    //   let roomCleaning = this.config1.placeholder;
-    //   let hasParking = this.config2.placeholder;
-    //   if (id != 0) {
-    //     axios
-    //       .put("https://localhost:44357/api/products/" + id, {
-    //         id,
-    //         title,
-    //         price,
-    //         quantity
-    //       })
-    //       .then(function(response) {
-    //         console.log(response);
-    //         alert("Success!");
-    //       })
-    //       .catch(function(error) {
-    //         console.log(error);
-    //         alert("Error!");
-    //       });
-    //   } else alert("Error!");
-    // },
+   updateHotel() {
+     let name = this.name;
+     let city = this.city;
+     let address = this.address;
+     let description = this.description;
+     let nutritionTypeId = this.nutritionTypeId;
+     let rating = this.rating;
+     let distanceToCityCenter = this.distanceToCityCenter;
+     let hasRoomCleaning = false;
+     let hasParking = false;
+     
+       axios
+         .put("https://localhost:5001/api/hotels/", {
+           name,
+           city,
+           address,
+           description,
+           nutritionTypeId,
+           hasRoomCleaning,
+           hasParking,
+           distanceToCityCenter,
+           rating
+         })
+         .then(function(response) {
+           console.log(response);
+           alert("Success!");
+         })
+         .catch(function(error) {
+           console.log(error);
+           alert("Error!");
+         });
+     
+   },
     goToHotels() {
       this.$router.push("/hotels");
     },

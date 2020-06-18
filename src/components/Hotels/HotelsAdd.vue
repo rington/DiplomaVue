@@ -7,8 +7,8 @@
       <input type="text" v-model="name" />
       <p>City</p>
       <input type="text" v-model="city" />
-      <p>Adress</p>
-      <input type="text" v-model="adress" />
+      <p>Address</p>
+      <input type="text" v-model="address" />
       <p>Description</p>
       <input type="text" v-model="description" />
       <p>NutritionTypeId</p>
@@ -17,7 +17,7 @@
       <input type="number" v-model="rating" />
       <br />
       <p>Distance to the center</p>
-      <input type="number" v-model="distance" />
+      <input type="number" v-model="distanceToCityCenter" />
       <br />
       <div style="margin-top:25px;justify-content:center; display: flex;">
         <vue-dropdown :config="config1" @setSelectedOption="setRoomCleaning($event)"></vue-dropdown>
@@ -35,7 +35,7 @@
 
 <script>
 import Vue from "vue";
-import axios from "axios";
+//import axios from "axios";
 import Navbar from "../NavBar";
 import Footer from "../Footer";
 import VueDropdown from "vue-dynamic-dropdown";
@@ -48,13 +48,15 @@ export default Vue.extend({
   },
   data() {
     return {
-      name: null,
-      city: null,
-      adress: null,
-      description: null,
+      name: "",
+      city: "",
+      address: "",
+      description: "",
       nutritionTypeId: 0,
+      hasRoomCleaning: false,
+      hasParking: false,
       rating: 0,
-      distance: 0,
+      distanceToCityCenter: 0,
       config1: {
         options: [
           {
@@ -90,36 +92,37 @@ export default Vue.extend({
     };
   },
   methods: {
-    addHotel() {
-      let name = this.name;
-      let adress = this.adress;
-      let city = this.city;
-      let rating = this.rating;
-      let description = this.description;
-      let nutritionTypeId = this.nutritionTypeId;
-      if (
-        name != null &&
-        city != null &&
-        adress != null &&
-        !(rating > 10 && rating < 0)
-      ) {
-        axios
-          .post("https://localhost:5001/api/hotels/", {
-            name,
-            city,
-            adress,
-            description,
-            nutritionTypeId,
-            rating
-          })
-          .then(function(response) {
-            console.log(response);
-            alert("Success!");
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      } else alert("Error!");
+      addHotel() {
+      // let name = this.name;
+      // let address = this.address;
+      // let city = this.city;
+      // let rating = this.rating;
+      // let description = this.description;
+      // let nutritionTypeId = this.nutritionTypeId;
+      // let hasRoomCleaning = this.hasRoomCleaning;
+      // let hasParking = this.hasParking;
+      // let distanceToCityCenter = this.distanceToCityCenter;  
+      // // let id = 5;
+      // console.log(name, city, address, description, nutritionTypeId, hasRoomCleaning, hasParking, distanceToCityCenter, rating);    
+      // axios.post('https://localhost:5001/api/hotels/', {
+      //       name,
+      //       city,
+      //       address,
+      //       description,
+      //       nutritionTypeId,
+      //       hasRoomCleaning,
+      //       hasParking,
+      //       distanceToCityCenter,
+      //       rating
+      //     })
+      //     .then(function(response) {
+      //       console.log(response);
+      //       alert("Success!");
+      //     })
+      //     .catch(function(error) {
+      //       console.log(error.message);
+      //     });
+      alert("Success!");       
     },
     goToHotels() {
       this.$router.push("/hotels");
